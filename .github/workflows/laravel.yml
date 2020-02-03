@@ -41,7 +41,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - name: npm install, build, and test
+      - name: npm install, build
         run: |
           # Build and test the project, then
           # deploy to Azure Web App.
@@ -50,7 +50,6 @@ jobs:
       - name: Laravel specifics
         run: |
           composer install
-          php artisan cache:clear
           php artisan cache:clear
       - name: 'Deploy to Azure WebApp'
         uses: azure/webapps-deploy@v1
