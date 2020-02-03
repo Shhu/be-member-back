@@ -8,31 +8,31 @@ env:
   NODE_VERSION: '13.x'
 
 jobs:
-    laravel-tests:
-      runs-on: ubuntu-latest
-      services:
-        mysql:
-          image: mysql:5.7
-          env:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: test_database
-          ports:
-            - 3307:3306
-          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-      steps:
-        - uses: actions/checkout@v1
-        - name: Copy .env
-          run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
-        - name: Install Dependencies
-          run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
-        - name: Generate key
-          run: php artisan key:generate
-        - name: Execute tests (Unit and Feature tests) via PHPUnit
-          run: vendor/bin/phpunit
+  laravel-tests:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: test_database
+        ports:
+          - 3307:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - uses: actions/checkout@v1
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+      - name: Generate key
+        run: php artisan key:generate
+      - name: Execute tests (Unit and Feature tests) via PHPUnit
+        run: vendor/bin/phpunit
 
   deploy:
     if: github.ref == 'refs/heads/master'
-        needs: [laravel-tests]
+      needs: [laravel-tests]
     runs-on: ubuntu-latest
 
     steps:
