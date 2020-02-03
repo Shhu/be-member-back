@@ -51,6 +51,7 @@ jobs:
         run: |
           composer install
           php artisan cache:clear
+          php artisan cache:clear
       - name: 'Deploy to Azure WebApp'
         uses: azure/webapps-deploy@v1
         with:
