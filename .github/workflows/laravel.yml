@@ -3,42 +3,53 @@ name: Build
 on: [push, pull_request]
 
 env:
-  AZURE_WEBAPP_NAME: "be-member-back"
-  AZURE_WEBAPP_PACKAGE_PATH: "public"
+  AZURE_WEBAPP_NAME: be-member-back   # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  NODE_VERSION: '10.x'                # set this to the node version to use
 
 jobs:
-#  laravel-tests:
-#    runs-on: ubuntu-latest
-#    services:
-#      mysql:
-#        image: mysql:5.7
-#        env:
-#          MYSQL_ROOT_PASSWORD: root
-#          MYSQL_DATABASE: tracy_test
-#        ports:
-#          - 3307:3306
-#        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-#    steps:
-#      - uses: actions/checkout@v1
-#      - name: Copy .env
-#        run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
-#      - name: Install Dependencies
-#        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
-#      - name: Generate key
-#        run: php artisan key:generate
-#      - name: Execute tests (Unit and Feature tests) via PHPUnit
-#        run: vendor/bin/phpunit
+  #  laravel-tests:
+  #    runs-on: ubuntu-latest
+  #    services:
+  #      mysql:
+  #        image: mysql:5.7
+  #        env:
+  #          MYSQL_ROOT_PASSWORD: root
+  #          MYSQL_DATABASE: tracy_test
+  #        ports:
+  #          - 3307:3306
+  #        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+  #    steps:
+  #      - uses: actions/checkout@v1
+  #      - name: Copy .env
+  #        run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
+  #      - name: Install Dependencies
+  #        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+  #      - name: Generate key
+  #        run: php artisan key:generate
+  #      - name: Execute tests (Unit and Feature tests) via PHPUnit
+  #        run: vendor/bin/phpunit
 
   deploy:
     if: github.ref == 'refs/heads/master'
-#    needs: [laravel-tests]
+    #    needs: [laravel-tests]
     runs-on: ubuntu-latest
+
     steps:
-      - name: "Deploy to Azure WebApp"
+      - uses: actions/checkout@master
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: npm install, build, and test
+        run: |
+          # Build and test the project, then
+          # deploy to Azure Web App.
+          npm install
+          npm run build --if-present
+      - name: 'Deploy to Azure WebApp'
         uses: azure/webapps-deploy@v1
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.PORTAL_PUBLISH_PROFILE }}
-      - name: "setup"
-        run: |
-          touch index.php
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
