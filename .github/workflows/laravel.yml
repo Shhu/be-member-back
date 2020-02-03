@@ -34,9 +34,9 @@ jobs:
     needs: [laravel-tests]
     runs-on: ubuntu-latest
     steps:
-    - name: "Deploy to Azure WebApp"
-        uses: azure/webapps-deploy@v1
-        with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.PORTAL_PUBLISH_PROFILE }}
-          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      - name: "Deploy to Azure WebApp"
+          uses: azure/webapps-deploy@v1
+          with:
+            app-name: ${{ env.AZURE_WEBAPP_NAME }}
+            publish-profile: ${{ secrets.PORTAL_PUBLISH_PROFILE }}
+            package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
