@@ -3,9 +3,9 @@ name: Build
 on: [push, pull_request]
 
 env:
-  AZURE_WEBAPP_NAME: be-member-back   # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
-  NODE_VERSION: '13.x'                # set this to the node version to use
+  AZURE_WEBAPP_NAME: be-member-back
+  AZURE_WEBAPP_PACKAGE_PATH: '.'
+  NODE_VERSION: '13.x'
 
 jobs:
   #  laravel-tests:
