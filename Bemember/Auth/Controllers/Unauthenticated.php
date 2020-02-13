@@ -8,6 +8,6 @@ class Unauthenticated extends Controller
 {
     public function __invoke()
     {
-        return \response('Unauthenticated.', 401);
+        return \response(['error' => 'Unauthenticated.'], 401);
     }
 }
