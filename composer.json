@@ -1,27 +1,28 @@
 {
-    "name": "laravel/laravel",
+    "name": "asso-code2be/be-member-back",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Be member project",
     "keywords": [
-        "framework",
-        "laravel"
+        "Be member",
+        "code2be"
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2",
+        "php": "^7.3",
         "fideloper/proxy": "^4.0",
         "intervention/image": "^2.5",
         "laravel/airlock": "^0.2.0",
         "laravel/framework": "^6.2",
-        "laravel/telescope": "^2.1",
-        "laravel/tinker": "^2.0",
         "spatie/laravel-cors": "^1.6"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-master",
         "facade/ignition": "^1.4",
         "fzaninotto/faker": "^1.9.1",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
+        "laravel/telescope": "^2.1",
+        "laravel/tinker": "^2.0",
         "phpunit/phpunit": "^8.0"
     },
     "config": {
