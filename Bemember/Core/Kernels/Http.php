@@ -42,6 +42,7 @@ class Http extends HttpKernel
             \Laravel\Airlock\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \Bemember\Core\Middleware\JsonMiddleware::class,
         ],
     ];
 
