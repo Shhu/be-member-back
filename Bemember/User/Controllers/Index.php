@@ -7,7 +7,7 @@ use Bemember\Core\Controllers\Controller;
 use Bemember\User\Models\User;
 use Bemember\User\Resources\FetchResource;
 
-class Fetch extends Controller
+class Index extends Controller
 {
 
     /**
