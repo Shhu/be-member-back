@@ -23,7 +23,7 @@ class AuthTest extends TestCase
     public function invalid_credentials_must_return_a_json(): void
     {
         $reponse = $this->post('/api/auth/login');
-        $reponse->assertStatus(422)->assertJsonStructure();
+        $reponse->assertStatus(422)->assertJsonStructure(['errors', 'message']);
     }
 
     /** @test */
