@@ -9,25 +9,25 @@ use Tests\TestCase;
 
 class AuthTest extends TestCase
 {
-    use DatabaseMigrations;
     use RefreshDatabase;
+    use DatabaseMigrations;
 
     /** @test */
     public function unauthenticated_return_a_401_with_unauthenticated_message(): void
     {
-        $reponse = $this->get('/api/auth/unauthenticated');
-        $reponse->assertStatus(401)->assertJsonStructure(['error']);
+        $response = $this->get('/api/auth/unauthenticated');
+        $response->assertStatus(401)->assertJsonStructure(['error']);
     }
 
     /** @test */
-    public function invalid_credentials_must_return_a_json(): void
+    public function login_invalid_credentials_must_return_a_json(): void
     {
-        $reponse = $this->post('/api/auth/login');
-        $reponse->assertStatus(422)->assertJsonStructure(['errors', 'message']);
+        $response = $this->post('/api/auth/login');
+        $response->assertStatus(422)->assertJsonStructure(['errors', 'message']);
     }
 
     /** @test */
-    public function successfully_authenticated_return_a_token(): void
+    public function login_success_return_a_token(): void
     {
         $user = \factory(User::class)->create();
         $response = $this->post('/api/auth/login', ['email' => $user->email, 'password' => 'password']);

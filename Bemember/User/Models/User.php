@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Airlock\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Bemember\User\Models\User
@@ -32,7 +33,7 @@ use Laravel\Airlock\HasApiTokens;
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable, HasRoles;
 
     protected $fillable = [
         'firstname',
@@ -49,6 +50,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $guard_name = 'api';
 
     public function isAdmin(): bool
     {

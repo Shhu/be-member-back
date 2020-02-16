@@ -6,9 +6,9 @@ use Bemember\User\Models\User;
 
 class UserPolicy
 {
-    public function index(): bool
+    public function index(User $user): bool
     {
-        return auth()->user() && auth()->user()->isAdmin();
+        return $user->can('admin');
     }
 
     public function show(User $user): bool
