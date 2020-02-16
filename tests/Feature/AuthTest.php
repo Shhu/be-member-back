@@ -33,5 +33,4 @@ class AuthTest extends TestCase
         $response = $this->post('/api/auth/login', ['email' => $user->email, 'password' => 'password']);
         $response->assertStatus(200)->assertJsonStructure(['token']);
     }
-
 }

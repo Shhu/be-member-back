@@ -6,16 +6,17 @@ use Illuminate\Http\Request;
 use Bemember\Core\Controllers\Controller;
 use Bemember\User\Models\User;
 use Bemember\User\Resources\FetchResource;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class Index extends Controller
 {
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): AnonymousResourceCollection
     {
         $this->authorize('index', User::class);
 

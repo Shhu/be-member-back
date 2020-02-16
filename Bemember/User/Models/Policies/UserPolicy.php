@@ -11,13 +11,8 @@ class UserPolicy
         return $user->can('admin');
     }
 
-    public function show(User $user): bool
-    {
-        return auth()->check() && $user->id === auth()->id();
-    }
-
     public function edit(User $user): bool
     {
-        return auth()->check() && $user->is_admin === 1;
+        return $user->can('admin');
     }
 }

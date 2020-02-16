@@ -15,7 +15,7 @@ class Edit extends Controller
      * @return EditResource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function __invoke(Request $request, User $user)
+    public function __invoke(Request $request, User $user): EditResource
     {
         $this->authorize('edit', $user);
 

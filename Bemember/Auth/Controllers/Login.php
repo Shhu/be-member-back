@@ -3,19 +3,19 @@
 namespace Bemember\Auth\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 use Bemember\Core\Controllers\Controller;
 use Bemember\User\Models\User;
 
 class Login extends Controller
 {
-
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return Response
      * @throws ValidationException
      */
-    public function __invoke(Request $request): \Illuminate\Http\JsonResponse
+    public function __invoke(Request $request): Response
     {
         $user = User::where('email', $request->get('email'))->first();
 
@@ -25,6 +25,6 @@ class Login extends Controller
             ]);
         }
 
-        return response()->json(['token' => $user->createToken('Bemember Token')->plainTextToken]);
+        return response(['token' => $user->createToken('Bemember Token')->plainTextToken]);
     }
 }
