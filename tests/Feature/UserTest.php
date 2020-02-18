@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Bemember\User\Models\User;
+use Bemember\User\Models\Profile;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Spatie\Permission\Models\Permission;
@@ -38,5 +39,13 @@ class UserTest extends TestCase
 
         $response = $this->json('GET', '/api/user', [], ['Authorization' => 'Bearer ' . $user->createToken('Test Token')->plainTextToken]);
         $response->assertStatus(200)->assertJsonStructure(['data']);
+    }
+
+    /** @test */
+    public function user_must_have_profile(): void
+    {
+        $user = \factory(User::class)->create();
+
+        $this->assertInstanceOf(Profile::class, $user->profile);
     }
 }

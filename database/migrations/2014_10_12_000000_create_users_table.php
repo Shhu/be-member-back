@@ -9,8 +9,6 @@ class CreateUsersTable extends Migration
     {
         \Schema::create('users', static function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('firstname')->nullable();
-            $table->string('lastname')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
