@@ -27,7 +27,7 @@ class OrganizationTest extends TestCase
     {
         $organization = \factory(Organization::class)->create();
         $user = \factory(User::class)->create();
-        $response = $this->get('/api/organization', [], ['Authorization' => 'Bearer ' . $user->createToken('Test Token')->plainTextToken]);
+        $response = $this->get('/api/organization', ['Authorization' => 'Bearer ' . $user->createToken('Test Token')->plainTextToken]);
         $response->assertStatus(403)->assertJsonStructure(['message']);
     }
 
@@ -40,7 +40,7 @@ class OrganizationTest extends TestCase
         $user = \factory(User::class)->create();
         $user->givePermissionTo('admin');
 
-        $response = $this->get('/api/organization', [], ['Authorization' => 'Bearer ' . $user->createToken('Test Token')->plainTextToken]);
+        $response = $this->get('/api/organization', ['Authorization' => 'Bearer ' . $user->createToken('Test Token')->plainTextToken]);
         $response->assertStatus(200)->assertJsonStructure(['data']);
     }
 }
