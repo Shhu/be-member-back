@@ -5,6 +5,7 @@ namespace Bemember\Core\Providers;
 use Illuminate\Support\ServiceProvider;
 use Bemember\User\Providers\UserServiceProvider;
 use Bemember\Auth\Providers\AuthServiceProvider;
+use Bemember\Organization\Providers\OrganizationServiceProvider;
 use Laravel\Telescope\TelescopeServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->register(AuthServiceProvider::class);
         $this->app->register(UserServiceProvider::class);
+        $this->app->register(OrganizationServiceProvider::class);
     }
 
     public function boot(): void

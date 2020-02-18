@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Airlock\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Bemember\Organization\Model\Organization;
 
 /**
  * Bemember\User\Models\User
@@ -59,5 +60,10 @@ class User extends Authenticatable
     public function profile(): HasOne
     {
         return $this->hasOne(Profile::class)->withDefault();
+    }
+
+    function organizations()
+    {
+        return $this->belongsToMany(Organization::class);
     }
 }
