@@ -5,16 +5,11 @@ namespace Tests\Feature;
 use Bemember\Organization\Models\Organization;
 use Bemember\User\Models\User;
 use Bemember\User\Models\Profile;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Spatie\Permission\Models\Permission;
 use Tests\TestCase;
 
 class OrganizationTest extends TestCase
 {
-    use RefreshDatabase;
-    use DatabaseMigrations;
-
     /** @test */
     public function organizations_index_require_authentification(): void
     {

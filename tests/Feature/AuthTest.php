@@ -3,15 +3,10 @@
 namespace Tests\Feature;
 
 use Bemember\User\Models\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class AuthTest extends TestCase
 {
-    use RefreshDatabase;
-    use DatabaseMigrations;
-
     /** @test */
     public function unauthenticated_return_a_401_with_unauthenticated_message(): void
     {
