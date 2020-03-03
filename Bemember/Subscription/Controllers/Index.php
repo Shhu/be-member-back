@@ -2,6 +2,7 @@
 
 namespace Bemember\Subscription\Controllers;
 
+use Bemember\Subscription\Models\Policies\SubscriptionPolicy;
 use Illuminate\Http\Request;
 use Bemember\Core\Controllers\Controller;
 use Bemember\Subscription\Models\Subscription;
@@ -18,7 +19,7 @@ class Index extends Controller
      */
     public function __invoke(Request $request): AnonymousResourceCollection
     {
-        $this->authorize('index', Subscription::class);
+        $this->authorize(SubscriptionPolicy::ADMIN, Subscription::class);
 
         $subscriptions = new Subscription;
 

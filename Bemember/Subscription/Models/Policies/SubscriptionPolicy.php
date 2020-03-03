@@ -6,12 +6,9 @@ use Bemember\User\Models\User;
 
 class SubscriptionPolicy
 {
-    public function index(User $user): bool
-    {
-        return $user->can('admin');
-    }
+    public const ADMIN = 'admin';
 
-    public function edit(User $user): bool
+    public function admin(User $user): bool
     {
         return $user->can('admin');
     }

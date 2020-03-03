@@ -2,6 +2,7 @@
 
 namespace Bemember\Subscription\Controllers;
 
+use Bemember\Subscription\Models\Policies\SubscriptionPolicy;
 use Illuminate\Http\Request;
 use Bemember\Core\Controllers\Controller;
 use Bemember\Subscription\Models\Subscription;
@@ -17,7 +18,7 @@ class Edit extends Controller
      */
     public function __invoke(Request $request, Subscription $subscription): EditResource
     {
-        $this->authorize('edit', $subscription);
+        $this->authorize(SubscriptionPolicy::ADMIN, $subscription);
 
         return new EditResource($subscription);
     }

@@ -2,6 +2,7 @@
 
 namespace Bemember\Organization\Controllers;
 
+use Bemember\Organization\Models\Policies\OrganizationPolicy;
 use Illuminate\Http\Request;
 use Bemember\Core\Controllers\Controller;
 use Bemember\Organization\Models\Organization;
@@ -18,7 +19,7 @@ class Index extends Controller
      */
     public function __invoke(Request $request): AnonymousResourceCollection
     {
-        $this->authorize('index', Organization::class);
+        $this->authorize(OrganizationPolicy::ADMIN, Organization::class);
 
         $organizations = new Organization;
 

@@ -2,6 +2,7 @@
 
 namespace Bemember\Organization\Controllers;
 
+use Bemember\Organization\Models\Policies\OrganizationPolicy;
 use Illuminate\Http\Request;
 use Bemember\Core\Controllers\Controller;
 use Bemember\Organization\Models\Organization;
@@ -17,7 +18,7 @@ class Edit extends Controller
      */
     public function __invoke(Request $request, Organization $organization): EditResource
     {
-        $this->authorize('edit', $organization);
+        $this->authorize(OrganizationPolicy::ADMIN, $organization);
 
         return new EditResource($organization);
     }
