@@ -9,7 +9,7 @@ $factory->define(Subscription::class, static function (Faker $faker) {
     $startDate = $faker->dateTimeThisYear();
 
     return [
-        'start_date'         => $startDate,
-        'end_date'           => $startDate->add(DateInterval::createFromDateString('1 year')),
+        'start_at'         => $startDate,
+        'end_at'           => $startDate->add(DateInterval::createFromDateString('1 year')),
     ];
 });

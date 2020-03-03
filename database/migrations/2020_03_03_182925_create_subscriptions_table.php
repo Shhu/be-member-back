@@ -11,10 +11,7 @@ class CreateSubscriptionsTable extends Migration
             $table->bigIncrements('id');
             $table->date('start_at');
             $table->date('end_at');
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->bigInteger('organization_id')->unsigned()->nullable();
-            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
+            $table->morphs('subscriptionable');
             $table->timestamps();
         });
     }

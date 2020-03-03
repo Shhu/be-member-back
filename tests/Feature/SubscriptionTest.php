@@ -21,9 +21,9 @@ class SubscriptionTest extends TestCase
     public function subscription_index_require_to_be_admin(): void
     {
         $user = \factory(User::class)->create();
-        $subscription = \factory(Subscription::class)->create([ 'user_id' => $user->id ]);
-        $user = \factory(User::class)->create();
-        $response = $this->get('/api/subscription', ['Authorization' => 'Bearer ' . $user->createToken('Test Token')->plainTextToken]);
+        $subscription = \factory(Subscription::class)->make();
+        $user->attachSubscription($subscription);
+        $response = $this->get('/api/subscription', ['Authorization' => "Bearer {$user->createToken('Test Token')->plainTextToken}"]);
         $response->assertStatus(403)->assertJsonStructure(['message']);
     }
 
@@ -33,11 +33,12 @@ class SubscriptionTest extends TestCase
         $this->seed('PermissionsTableSeeder');
 
         $user = \factory(User::class)->create();
-        $subscription = \factory(Subscription::class)->create([ 'user_id' => $user->id ]);
-        $user = \factory(User::class)->create();
-        $user->givePermissionTo('admin');
+        $subscription = \factory(Subscription::class)->make();
+        $user->attachSubscription($subscription);
 
-        $response = $this->get('/api/subscription', ['Authorization' => 'Bearer ' . $user->createToken('Test Token')->plainTextToken]);
-        $response->assertStatus(200)->assertJsonStructure(['data']);
+        $admin = \factory(User::class)->create()->givePermissionTo('admin');
+
+        $response = $this->get('/api/subscription', ['Authorization' => "Bearer {$admin->createToken('Test Token')->plainTextToken}"]);
+        $response->assertStatus(200)->assertJsonFragment(['id' => $subscription->id]);
     }
 }
