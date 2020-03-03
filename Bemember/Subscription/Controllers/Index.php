@@ -22,6 +22,14 @@ class Index extends Controller
 
         $subscriptions = new Subscription;
 
+        if (!empty($request->user_id)) {
+            $organizations = $organizations->where('user_id', "$request->user_id");
+        }
+
+        if (!empty($request->organization_id)) {
+            $organizations = $organizations->where('organization_id', "$request->organization_id");
+        }
+
         return FetchResource::collection($subscriptions->get());
     }
 }
