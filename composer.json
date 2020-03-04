@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.3",
         "fideloper/proxy": "^4.0",
+        "fruitcake/laravel-cors": "^1.0",
         "intervention/image": "^2.5",
         "laravel/airlock": "^0.2.0",
         "laravel/framework": "^7.0",
