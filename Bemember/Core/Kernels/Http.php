@@ -19,7 +19,6 @@ class Http extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \Bemember\Core\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \Spatie\Cors\Cors::class,
     ];
 
     /**

@@ -2,7 +2,7 @@
 
 namespace Bemember\Subscription\Resources;
 
-use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Bemember\Subscription\Models\Subscription;
 
 /**
@@ -10,7 +10,7 @@ use Bemember\Subscription\Models\Subscription;
  * @package MLI\Basket\Resources
  * @mixin Subscription
  */
-class FetchResource extends Resource
+class FetchResource extends JsonResource
 {
     public function toArray($request): array
     {

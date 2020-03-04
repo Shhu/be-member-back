@@ -2,7 +2,7 @@
 
 namespace Bemember\Organization\Resources;
 
-use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Bemember\Organization\Models\Organization;
 
 /**
@@ -10,7 +10,7 @@ use Bemember\Organization\Models\Organization;
  * @package MLI\Basket\Resources
  * @mixin Organization
  */
-class EditResource extends Resource
+class EditResource extends JsonResource
 {
     public function toArray($request): array
     {
