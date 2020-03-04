@@ -27,8 +27,6 @@ class UserTest extends TestCase
     /** @test */
     public function admin_can_list_users(): void
     {
-        $this->seed('PermissionsTableSeeder');
-
         $user = \factory(User::class)->create();
         $user->givePermissionTo('admin');
 

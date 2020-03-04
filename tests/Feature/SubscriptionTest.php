@@ -30,7 +30,6 @@ class SubscriptionTest extends TestCase
     /** @test */
     public function admin_can_list_subscriptions(): void
     {
-        $this->seed('PermissionsTableSeeder');
 
         $user = \factory(User::class)->create();
         $subscription = \factory(Subscription::class)->make();

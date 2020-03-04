@@ -27,8 +27,6 @@ class OrganizationTest extends TestCase
     /** @test */
     public function admin_can_list_organizations(): void
     {
-        $this->seed('PermissionsTableSeeder');
-
         $organization = \factory(Organization::class)->create();
         $user = \factory(User::class)->create();
         $user->givePermissionTo('admin');
